@@ -1,6 +1,6 @@
-# LangGraph-GUI-svelte [LangGraph-GUI](https://github.com/LangGraph-GUI/LangGraph-GUI)
+# LangGraph-GUI-svelte [LangGraph-GUI](../LangGraph-GUI-root)
 
-## See [LangGraph-GUI](https://github.com/LangGraph-GUI/LangGraph-GUI)
+## See [LangGraph-GUI](../LangGraph-GUI-root)
 
 
 ## 
