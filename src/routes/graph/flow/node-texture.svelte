@@ -1,4 +1,4 @@
-<!-- routes/graph/flow/node-layout.svelte -->
+<!-- routes/graph/flow/node-teature.svelte -->
 <script lang="ts">
 	import type { NodeProps } from '@xyflow/svelte';
 	import { useSvelteFlow, NodeResizer } from '@xyflow/svelte';
