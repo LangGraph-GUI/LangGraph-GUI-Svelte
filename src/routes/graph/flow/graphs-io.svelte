@@ -1,13 +1,11 @@
-<!-- routes/graph/menu/graphs-io.svelte -->
+<!-- routes/graph/flow/graphs-io.svelte -->
 <script lang="ts" module>
 	import { get } from 'svelte/store';
-	import { graphs, usingSubgraph } from '../flow/graphs.store.svelte';
+	import { graphs, usingSubgraph, serial_number } from './graphs.store.svelte';
 	import { saveJsonToFile, loadJsonFromFile } from '$lib/io/json';
-	import { SvelteNodeToJsonNode, JsonNodeToSvelteNode } from '../flow/node-schema';
-	import type { JsonNodeData } from '../flow/node-schema';
-
-	import type { ExportedGraph } from './graphs-algo.svelte';
-	import { GraphsToJson, JsonToGraphs } from './graphs-algo.svelte';
+	import { SvelteNodeToJsonNode, JsonNodeToSvelteNode } from './node-schema';
+	import type { JsonNodeData } from './node-schema';
+	import { type ExportedGraph, GraphsToJson, JsonToGraphs } from '$lib/util/serialization';
 
 	export async function saveGraphs(): Promise<void> {
 		const gm = get(graphs);
@@ -18,8 +16,9 @@
 	export async function loadGraphs(): Promise<void> {
 		try {
 			const arr = (await loadJsonFromFile()) as ExportedGraph[];
-			const newMap = JsonToGraphs(arr);
-			graphs.set(newMap);
+			const result = JsonToGraphs(arr);
+			graphs.set(result.graphs);
+			serial_number.set(result.nextSerialId);
 
 			if (arr.length) {
 				usingSubgraph.set(arr[0].name);
